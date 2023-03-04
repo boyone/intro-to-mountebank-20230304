@@ -158,13 +158,29 @@
    }
    ```
 
+   to
+
    ```json
    "predicates": [
        {
-       "inject": "<%- stringify(filename, 'inject-predicate-file') %>"
+       "inject": "<%- stringify(filename, 'inject-predicate-file.js') %>"
        }
    ]
    ```
+
+   > inject-predicate-file.js
+
+   ```js
+   function (request) {
+       if (...) {
+          return true;
+      }
+      else {
+          return false;
+      }
+   }
+   ```
+
 ---
 
 [Home](README.md) [Next](05-Responses.md)
