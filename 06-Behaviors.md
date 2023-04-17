@@ -82,7 +82,7 @@
 
 4. lookup
 
-   - imposter.json
+   - imposter-lookup.json
 
      ```json
      {
