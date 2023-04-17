@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "512c80f6-6f0e-42cc-825d-f555c1676592",
+		"name": "shoppping-cart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "product-list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Total product should be 1\", function () {",
+							"    var products = pm.response.json();",
+							"    pm.expect(3).to.eql(products.total);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product-detail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var product = pm.response.json();",
+							"",
+							"pm.test(\"Product name should be Balance Training Bicycle\", function () {",
+							"    pm.expect('Balance Training Bicycle').to.eql(product.product_name);",
+							"});",
+							"",
+							"pm.test(\"Product price should be 119.95\", function () {",
+							"    pm.expect(119.95).to.eql(product.product_price);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/product/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "submit-order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"OrderId is existed\", function () {",
+							"    pm.expect(jsonData.order_id).to.exist;",
+							"    pm.collectionVariables.set(\"order_id\", jsonData.order_id);",
+							"});",
+							"",
+							"pm.test(\"Total price should be 14.95\", function () {",
+							"    pm.expect(14.95).to.eql(jsonData.total_price);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"cart\":[\n\t\t{\n\t\t\t\"product_id\": 2,\n\t\t\t\"quantity\": 1\n\t\t}\n\t],\n\t\"shipping_method\": \"Kerry\",\n\t\"shipping_address\": \"405/37 ถ.มหิดล\",\n\t\"shipping_sub_district\": \"ท่าศาลา\",\n\t\"shipping_district\": \"เมือง\",\n\t\"shipping_province\": \"เชียงใหม่\",\n\t\"shipping_zip_code\": \"50000\",\n\t\"recipient_name\": \"ณัฐญา ชุติบุตร\",\n\t\"recipient_phone_number\": \"0970809292\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "confirm payment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let order_id = pm.environment.get(\"order_id\");",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"notify_message วันเวลาที่ชำระเงิน 1/3/2020 13:30:00 หมายเลขคำสั่งซื้อ \" + order_id +\" คุณสามารถติดตามสินค้าผ่านช่องทาง Kerry หมายเลข 1785261900\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.notify_message).to.eql(\"วันเวลาที่ชำระเงิน 1/3/2020 13:30:00 หมายเลขคำสั่งซื้อ \" + order_id + \" คุณสามารถติดตามสินค้าผ่านช่องทาง Kerry หมายเลข 1785261900\");",
+							"});",
+							"",
+							"// pm.test(\"notify_message วันเวลาที่ชำระเงิน 1/3/2020 13:30:00 หมายเลขคำสั่งซื้อ 8004359105 คุณสามารถติดตามสินค้าผ่านช่องทาง Kerry หมายเลข 1785261901\", function () {",
+							"//     var jsonData = pm.response.json();",
+							"//     pm.expect(jsonData.notify_message).to.eql(\"วันเวลาที่ชำระเงิน 1/3/2020 13:30:00 หมายเลขคำสั่งซื้อ 8004359105 คุณสามารถติดตามสินค้าผ่านช่องทาง Kerry หมายเลข 1785261901\");",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"order_id\": {{order_id}},\n\t\"payment_type\": \"credit\",\n\t\"type\": \"visa\",\n\t\"card_number\": \"4719700591590995\",\n\t\"cvv\": \"752\",\n\t\"expired_month\": 7,\n\t\"expired_year\": 20,\n\t\"card_name\": \"Karnwat Wongudom\",\n\t\"total_price\": 14.95\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/confirmPayment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"confirmPayment"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "order_id",
+			"value": ""
+		},
+		{
+			"key": "order_idx",
+			"value": ""
+		}
+	]
+}
