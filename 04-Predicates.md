@@ -36,7 +36,7 @@
        {
          "equals": {
            "headers": {
-             "Content-Types": "application/json"
+             "Content-Type": "application/json"
            }
          }
        },
