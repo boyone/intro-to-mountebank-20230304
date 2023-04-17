@@ -1,31 +1,7 @@
 # README
 
-1. Basic Commands
-
-    - start
-    - stop
-    - restart
-
-2. Basic Options
-
-    - `--configfile`
-
-      ```sh
-      mb start --configfile imposters.json
-      ```
-
-    - `--allowInjection`
-
-      ```sh
-      mb start --allowInjection
-      ```
-
-    - `--loglevel`
-
-      ```sh
-      mb start --loglevel [debug, info, warn, error]
-      ```
-
+1. [Setup Mountebank](./01-Setup-Mountebank.md)
+2. [Mountebank cli](./02-Mountebank-cli.md)
 3. [Structure](./03-Structure.md)
 4. [Predicates](./04-Predicates.md)
 5. [Responses](./05-Responses.md)
