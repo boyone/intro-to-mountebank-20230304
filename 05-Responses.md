@@ -54,7 +54,7 @@
    {
      "responses": [
        {
-         "inject": "function (request) { if (request.path.indexOf('/items/1') === 0) { return { statusCode: 404 }; } }"
+         "inject": "function (request) { if (request.path.indexOf('/api/v1/product/10') === 0) { return { statusCode: 500 }; } }"
        }
      ]
    }
@@ -74,8 +74,8 @@
 
      ```js
      function (request) {
-         if (request.path.indexOf('/items/1') === 0) {
-             return { statusCode: 404 };
+         if (request.path.indexOf('/api/v1/product/10') === 0) {
+             return { statusCode: 500 };
          }
      }
      ```
