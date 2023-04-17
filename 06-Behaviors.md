@@ -20,7 +20,7 @@
    ```json
    {
      "_behaviors": {
-       "decorate": "function (request, response, state, logger) { const item = JSON.parse(request.body); response.body.message = item.name"
+       "decorate": "function (request, response, state, logger) { const item = JSON.parse(request.body); response.body.message = item.name; }"
      }
    }
    ```
