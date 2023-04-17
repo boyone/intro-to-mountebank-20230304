@@ -49,7 +49,7 @@
    }
    ```
 
-4. Query Param
+4. Query Param: `/api/v1/product?q=robot`
 
    ```json
    {
@@ -62,6 +62,20 @@
        {
          "equals": {
            "query": { "q": "robot" }
+         }
+       }
+     ],
+     "responses": [
+       {
+         "is": {
+           "statusCode": 200,
+           "headers": { "Content-Type": "application/json" },
+           "body": {
+             "id": 3,
+             "product_name": "Alpha Bot",
+             "product_price": 33.95,
+             "product_image": "/Alpha Bot.png"
+           }
          }
        }
      ]
