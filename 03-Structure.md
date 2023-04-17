@@ -37,7 +37,7 @@
                 {
                   "is": {
                     "statusCode": 200,
-                    "headers": { "Content-Types": "application/json" },
+                    "headers": { "Content-Type": "application/json" },
                     "body": {
                       "id": 1,
                       "product_name": "Balance Training Bicycle",
@@ -123,7 +123,7 @@
            {
              "is": {
                "statusCode": 200,
-               "headers": { "Content-Types": "application/json" },
+               "headers": { "Content-Type": "application/json" },
                "body": {
                  "id": 1,
                  "product_name": "Balance Training Bicycle",
