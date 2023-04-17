@@ -180,7 +180,29 @@
       ```
 
    3. Submit Order
+
+      - Path: `/api/v1/order`
+      - Method: `POST`
+      - Response Body
+
+        ```json
+        {
+          "order_id": 8004359122,
+          "total_price": 14.95
+        }
+        ```
+
    4. Confirm Payment
+
+      - Path: `/api/v1/confirmPayment`
+      - Method: `POST`
+      - Response Body
+
+        ```json
+        {
+          "notify_message": "วันเวลาที่ชำระเงิน 1/3/2020 13:30:00 หมายเลขคำสั่งซื้อ 8004359122 คุณสามารถติดตามสินค้าผ่านช่องทาง Kerry หมายเลข 1785261900"
+        }
+        ```
 
 ---
 
