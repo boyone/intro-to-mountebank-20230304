@@ -47,7 +47,7 @@
 3. copy
 
    ```sh
-   curl http://localhost:3000/api/v1/product/1 
+   curl http://localhost:3000/api/v1/product/1
    ```
 
    ```json
@@ -79,6 +79,74 @@
      ]
    }
    ```
+
+4. lookup
+
+   - imposter.json
+
+     ```json
+     {
+       "protocol": "http",
+       "port": 3000,
+       "stubs": [
+         {
+           "predicates": [
+             {
+               "matches": { "path": "/api/v1/product/\\d+" },
+               "caseSensitive": true
+             },
+             {
+               "equals": {
+                 "method": "GET",
+                 "headers": { "Content-Type": "application/json" }
+               }
+             }
+           ],
+           "responses": [
+             {
+               "is": {
+                 "statusCode": 200,
+                 "headers": { "Content-Type": "application/json" },
+                 "body": {
+                   "id": "${row}['id']",
+                   "product_name": "${row}['name']",
+                   "product_price": "${row}[price]",
+                   "product_image": "${row}[image]"
+                 }
+               },
+               "_behaviors": {
+                 "lookup": [
+                   {
+                     "key": {
+                       "from": "path",
+                       "using": {
+                         "method": "regex",
+                         "selector": "product/(\\w+)"
+                       },
+                       "index": 1
+                     },
+                     "fromDataSource": {
+                       "csv": { "path": "products.csv", "keyColumn": "id" }
+                     },
+                     "into": "${row}"
+                   }
+                 ]
+               }
+             }
+           ]
+         }
+       ]
+     }
+     ```
+
+   - products.csv
+
+     ```csv
+     "id","name","price","image"
+     "1","Balance Training Bicycle","119.95","/Balance Training Bicycle.png"
+     "2","43 Piece Dinner Set","12.95","/43 Piece Dinner Set.png"
+     "3","Alpha Bot","33.95","/Alpha Bot.png"
+     ```
 
 ---
 
