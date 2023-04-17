@@ -27,7 +27,7 @@
        {
          "is": {
            "statusCode": 200,
-           "body": "<%- stringify(filename, 'resp.json') %>",
+           "body": "<%- stringify(filename, 'item01.json') %>",
            "headers": {
              "Content-Type": "application/json"
            }
@@ -37,7 +37,7 @@
    }
    ```
 
-   > resp.json
+   > item01.json
 
    ```json
    {
