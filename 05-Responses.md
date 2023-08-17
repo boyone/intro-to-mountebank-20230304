@@ -80,18 +80,6 @@
      }
      ```
 
-## Exercise Add timestamp to json response body
-
-- Submit Order & Confirm Payment
-- timestamp.js
-
-  ```js
-  function (request, response, logger) {
-       const item = JSON.parse(request.body);
-       response.body.timestamp = new Date().toString();
-  }
-  ```
-
 ---
 
 [Home](README.md) [Next](./06-Behaviors.md)

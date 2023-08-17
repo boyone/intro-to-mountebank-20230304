@@ -25,6 +25,18 @@
    }
    ```
 
+   1. Exercise Add timestamp to Submit Order & Confirm Payment json response body
+
+      - timestamp.js
+
+        ```js
+        function (request, response, logger) {
+            const item = JSON.parse(request.body);
+            response.body.timestamp = new Date().toString();
+        }
+        ```
+
+
 2. wait
 
    ```json

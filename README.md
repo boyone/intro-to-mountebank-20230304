@@ -7,4 +7,5 @@
 5. [Responses](./05-Responses.md)
 6. [Behaviors](06-Behaviors.md)
 7. [Proxy](./07-Proxy.md)
-8. Working With Docker
+8. [Swagger-bank](./08-Swagger-bank.md)
+9. Working With Docker
