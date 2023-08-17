@@ -31,7 +31,6 @@
 
         ```js
         function (request, response, logger) {
-            const item = JSON.parse(request.body);
             response.body.timestamp = new Date().toString();
         }
         ```
