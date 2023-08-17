@@ -10,15 +10,25 @@ npm install swaggerbank
 
 ## Usage
 
-```js
-const SwaggerBank = require('swaggerbank');
-const api = new SwaggerBank.API('<path to your swagger file>');
+1. Create file `swagger-bank.js` then add the following lines
 
-api.validateAPI()
-.then( () => {
-    api.setupMountebankImposter(3000);
-})
-```
+    ```js
+    const SwaggerBank = require('swaggerbank');
+    const api = new SwaggerBank.API('<path to your swagger file>');
+
+    api.validateAPI()
+    .then( () => {
+        api.setupMountebankImposter(3000);
+    })
+    ```
+
+2. Run
+
+    ```sh
+    node swagger-bank.js    
+    ```
+
+3. Go to [http://localhost:2525](http://localhost:2525)
 
 ## Download Imposter File
 
