@@ -34,4 +34,34 @@ curl http://localhost:2525/imposters/:port > imposters.json
 
 ---
 
+## Run Swagger-ui in Local machine
+
+1. Clone Swagger-ui
+
+    ```sh
+    git clone https://github.com/swagger-api/swagger-ui.git --depth 1
+    ```
+
+2. Change Directory to `swagger-ui`
+
+    ```sh
+    cd swagger-ui
+    ```
+
+3. Create `examples` Directory in `dev-helpers` directory
+
+    ```sh
+    mkdir dev-helpers/examples
+    ```
+
+4. Copy `swagger files` to `dev-helpers/examples`
+5. Run `swagger-ui`
+
+    ```sh
+    // npm install
+    npm run dev
+    ```
+
+---
+
 [Home](README.md)
