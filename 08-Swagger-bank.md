@@ -36,6 +36,8 @@ curl http://localhost:2525/imposters/:port > imposters.json
 
 ## Run Swagger-ui in Local machine
 
+[https://swagger.io/docs/open-source-tools/swagger-ui/development/setting-up/](https://swagger.io/docs/open-source-tools/swagger-ui/development/setting-up/)
+
 1. Clone Swagger-ui
 
     ```sh
@@ -61,6 +63,8 @@ curl http://localhost:2525/imposters/:port > imposters.json
     // npm install
     npm run dev
     ```
+
+6. Open [http://localhost:3200/](http://localhost:3200/)
 
 ---
 
