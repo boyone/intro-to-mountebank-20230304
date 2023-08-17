@@ -23,13 +23,15 @@ api.validateAPI()
 ## Download Imposter File
 
 ```sh
-curl http://localhost:2525/imposters/:port
+# curl http://localhost:2525/imposters/:port
+curl http://localhost:2525/imposters/3000
 ```
 
 or
 
 ```sh
-curl http://localhost:2525/imposters/:port > imposters.json
+# curl http://localhost:2525/imposters/:port > imposters.json
+curl http://localhost:2525/imposters/3000 > imposters.json
 ```
 
 ---
